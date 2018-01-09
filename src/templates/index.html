@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+        <script type=text/javascript>
+          var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+
+        <title> Demo - Autocomplete </title>
+    </head>
+
+    <body>
+        <div class="wrapper" >
+            <div id="search" class="navbar">
+                {% include "search.html" %}
+            </div>
+
+            <div id="welcome-page"> <h2>Welcome</h2></div>
+            <div id="result" class="center" style="display:none">
+                {% include "list.html" %}
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='./js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='./js/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='./js/main.js') }}"></script>
+    </body>
+</html>

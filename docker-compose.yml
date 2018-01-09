@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  # MongoDB container
+  mongo:
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  # webapp container - built from Dockerfile
+  webapp:
+    build: webapp-env/
+    image: flask:2.7-alpine
+    volumes:
+      - "./src:/webapp/src"
+    environment:
+      FLASK_DEBUG: 1
+    links:
+      - mongo
+      - redis
+    ports:
+      - "5000:5000"
+        #command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - mongo
+      - redis
